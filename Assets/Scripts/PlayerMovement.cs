@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position = transform.position + new Vector3 (Input.GetAxis("Horizontal") * velocity * Time.deltaTime, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.Space) && canJump == true)
+        if (Input.GetKey(KeyCode.Space) && canJump == true)
         {
             canJump = false;
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
@@ -33,14 +33,18 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = true;
         }
-        else
-        {
-            canJump = false;
-        }
 
         if (collision.gameObject.tag == "death")
         {
             Destroy(gameObject);
+        }    
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bajar")
+        {
+            Debug.Log("Gordito pasaste por un trigger");
         }
     }
 }
