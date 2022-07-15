@@ -2,40 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
-    public float velocity;
-    public float jumpForce;
-    public bool canJump;
+    [SerializeField] float velocity;
+    [SerializeField] float jumpForce;
     Rigidbody2D rb;
+    bool canJump;
+    IPlayerController controller;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        controller = new PcPlayerController();
     }
 
     void Update()
     {
-        transform.position = transform.position + new Vector3 (Input.GetAxis("Horizontal") * velocity * Time.deltaTime, 0, 0);
+        controller.Move(velocity, transform);
 
-        if (Input.GetKey(KeyCode.Space) && canJump == true)
+        if (canJump == true)
         {
-            canJump = false;
-            rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+            canJump = controller.Jump(canJump, jumpForce, rb);
         }
+
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
+            Debug.Log("Toco el suelo");
         }
 
         if (collision.gameObject.tag == "death")
         {
             Destroy(gameObject);
-        }    
+        }
     }
-
 }
