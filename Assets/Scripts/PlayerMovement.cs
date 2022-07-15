@@ -17,10 +17,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        
+
         transform.position = transform.position + new Vector3 (Input.GetAxis("Horizontal") * velocity * Time.deltaTime, 0, 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump == true)
         {
+            canJump = false;
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
         }
     }
@@ -30,10 +33,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
-        }
-        else
-        {
-            canJump = false;
         }
     }
 }
