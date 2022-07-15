@@ -27,12 +27,20 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+
+        if (collision.gameObject.tag == "death")
+        {
+            Destroy(gameObject);
         }
     }
 }
