@@ -9,7 +9,7 @@ public class PcPlayerController : IPlayerController
     {
         if (Input.GetKey(KeyCode.Space) && canJump == true)
         {        
-            rb.AddForce(new Vector2(0, jumpForce) * Time.deltaTime, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             return false;
         }
         return true;

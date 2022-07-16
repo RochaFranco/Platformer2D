@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8750402645412306921}
   - component: {fileID: 8750402645412306934}
   m_Layer: 0
-  m_Name: elice
+  m_Name: helice
   m_TagString: death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

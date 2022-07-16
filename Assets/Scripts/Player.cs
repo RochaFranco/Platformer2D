@@ -33,12 +33,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
-            Debug.Log("Toco el suelo");
         }
 
         if (collision.gameObject.tag == "death")
         {
             Destroy(gameObject);
         }
+
     }
 }

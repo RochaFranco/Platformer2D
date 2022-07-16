@@ -7,11 +7,10 @@ public class ObjectMovement : MonoBehaviour
 
     public float vertical;
     public float horizontal;
-    Rigidbody2D rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void Update()
